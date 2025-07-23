@@ -1,0 +1,17 @@
+name: Metrics
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Esto ejecutará el workflow cada semana
+  workflow_dispatch:  # También puedes ejecutarlo manualmente
+  
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Metrics plugin
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}  # Este es el token secreto
+          filename: metrics.plugin.isocalendar.fullyear.svg  # Archivo de salida
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year  # Calendario completo
